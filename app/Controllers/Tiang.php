@@ -10,27 +10,34 @@ class Tiang extends BaseController
     {
         $currentPage = $this->request->getVar('page_tiang') ? $this->request->getVar('page_tiang') : 1;
         $model = model(TiangModel::class);
-        $tampil = 'tiang';
         $data = [
             'daftar_tiang' => $model->paginate(10, 'tiang'),
             'title' => 'Tiang',
             'pager' => $model->pager,
             'currentPage' => $currentPage,
         ];
-
-        if ($id_tiang !== null) {
-            $tampil = 'tiang_detail';
-        }
-
         return view('templates/header', $data)
-            . view('aset/' . $tampil)
+            . view('aset/tiang')
             . view('templates/footer');
     }
+
+    public function detail(int $id_tiang = null)
+    {
+        $model = model(TiangModel::class);
+        $data = [
+            'daftar_tiang' => $model->where(['id_tiang'=>$id_tiang])->find(),
+            'title' => 'Tiang',
+        ];
+        return view('templates/header', $data)
+            . view('aset/tiang_detail')
+            . view('templates/footer');
+    }
+
     public function new()
     {
         helper('form');
         $data = [
-            'title'     => 'Tiang Baru'
+            'title'     => 'Detail Tiang'
         ];
         return view('templates/header', $data)
             . view('aset/tiang_baru')
@@ -75,7 +82,7 @@ class Tiang extends BaseController
             . view('templates/footer');
     }
     public function peta()
-    {      
+    {
         $model = model(TiangModel::class);
         $data = [
             'daftar_tiang' => $model->findAll(),
