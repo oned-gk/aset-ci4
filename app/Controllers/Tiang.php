@@ -10,9 +10,9 @@ class Tiang extends BaseController
     {
         $currentPage = $this->request->getVar('page_tiang') ? $this->request->getVar('page_tiang') : 1;
         $model = model(TiangModel::class);
-        $tampil = 'map';
+        $tampil = 'tiang';
         $data = [
-            'daftar_tiang' => $model->paginate(10,'tiang'),
+            'daftar_tiang' => $model->paginate(10, 'tiang'),
             'title' => 'Tiang',
             'pager' => $model->pager,
             'currentPage' => $currentPage,
@@ -26,7 +26,7 @@ class Tiang extends BaseController
             . view('aset/' . $tampil)
             . view('templates/footer');
     }
-    public function baru()
+    public function new()
     {
         helper('form');
         $data = [
@@ -39,39 +39,39 @@ class Tiang extends BaseController
 
     //Latitude: -85 to +85 (actually -85.05115 for some reason)
     //Longitude: -180 to +180
-    
-    public function tambah()
+
+    public function create()
     {
         helper('form');
-        $data = $this->request->getPost(['no_tiang','latitude','longitude']);
-        if(! $this->validateData($data,[
-            'no_tiang'=>'required',
-            'latitude'=>'required',
-            'longitude'=>'required',
-        ],[
-            'no_tiang'=>['required'=>'Nomor tiang harap diisi!'],
-            'latitude'=>['required'=>'Latitude harap diisi!'],
-            'longitude'=>['required'=>'Longitude harap diisi!'],
-            ])){
-               return $this->baru(); 
-            }
+        $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude']);
+        if (! $this->validateData($data, [
+            'no_tiang' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ], [
+            'no_tiang' => ['required' => 'Nomor tiang harap diisi!'],
+            'latitude' => ['required' => 'Latitude harap diisi!'],
+            'longitude' => ['required' => 'Longitude harap diisi!'],
+        ])) {
+            return $this->new();
+        }
 
         $post = $this->validator->getValidated();
         $model = model(TiangModel::class);
         $image = $this->request->getFile('foto');
-        $image->move(ROOTPATH . 'public\uploads','sontoloyo.jpg');
+        $image->move(ROOTPATH . 'public\uploads', 'sontoloyo.jpg');
 
         $model->save([
-            'no_tiang'=>$post['no_tiang'],
-            'latitude'=>$post['latitude'],
-            'longitude'=>$post['longitude'],
-            'foto'=>$image->getName(),
+            'no_tiang' => $post['no_tiang'],
+            'latitude' => $post['latitude'],
+            'longitude' => $post['longitude'],
+            'foto' => $image->getName(),
         ]);
 
-        $data= ['title' => 'Tambah tiang baru'];
+        $data = ['title' => 'Tambah tiang baru'];
 
         return view('templates/header', $data)
-        . view('aset/tiang_baru_success')
-        . view('templates/footer');
-    }   
+            . view('aset/tiang_baru_success')
+            . view('templates/footer');
+    }
 }

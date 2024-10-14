@@ -9,7 +9,7 @@ use App\Controllers\Depan;
  */
 $routes->get('/', [Depan::class,'view']);
 $routes->get('tiang',[Tiang::class,'index']);
-$routes->get('tiang/baru',[Tiang::class,'baru']);
-$routes->post('tiang',[Tiang::class,'tambah']);
+$routes->get('tiang/new',[Tiang::class,'new']);
+$routes->post('tiang',[Tiang::class,'create']);
 $routes->get('tiang/(:segment)',[Tiang::class,'index']);
 

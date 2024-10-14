@@ -1,5 +1,5 @@
 <h2><?= esc($title) ?></h2>
-<a href="tiang/baru" class="btn btn-success btn-sm">Tambah tiang baru</a>
+<a href="tiang/new" class="btn btn-success btn-sm">Tambah tiang baru</a>
 <div class="table-responsive small">
         <table class="table table-striped table-sm">
           <thead>
