@@ -6,7 +6,7 @@ use App\Models\TiangModel;
 
 class Tiang extends BaseController
 {
-    public function index(int $id_tiang = null)
+    public function index()
     {
         $currentPage = $this->request->getVar('page_tiang') ? $this->request->getVar('page_tiang') : 1;
         $model = model(TiangModel::class);
@@ -26,7 +26,7 @@ class Tiang extends BaseController
         $model = model(TiangModel::class);
         $data = [
             'daftar_tiang' => $model->where(['id_tiang'=>$id_tiang])->find(),
-            'title' => 'Tiang',
+            'title' => 'Tiang '.$id_tiang,
         ];
         return view('templates/header', $data)
             . view('aset/tiang_detail')
