@@ -10,8 +10,8 @@
     <title><?= esc($title) ?> - Aset Panglima Kamayo</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">   
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="<?= base_url('assets/icons-1.11.3/font/bootstrap-icons.min.css')?>">
     <!-- gmap3 -->
     <link href="../styles.css" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEmGuIceexKma4Q6yyRD8M-KS5vbPtUVM">
@@ -20,7 +20,17 @@
 
     </script><script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script>
     <!-- end gmap3 -->
-
+<style>
+  .bi::before {
+  display: inline-block;
+  content: "";
+  font-size: larger;
+  vertical-align: -.125em;
+  background-image: url("data:image/svg+xml,<svg viewBox='0 0 16 16' fill='%23333' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' clip-rule='evenodd'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 1rem 1rem;
+}
+</style>
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -249,9 +259,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url().'tiang'?>">
-                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
+              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url('tiang')?>">
+                <span class="bi bi-tags"></span>
                 Tiang
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url('tiang/peta')?>">
+                <span class="bi bi-geo-alt"></span>
+                Peta Tiang
               </a>
             </li>
             <li class="nav-item">

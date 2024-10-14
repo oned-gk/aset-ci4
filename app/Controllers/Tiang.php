@@ -74,4 +74,16 @@ class Tiang extends BaseController
             . view('aset/tiang_baru_success')
             . view('templates/footer');
     }
+    public function peta()
+    {      
+        $model = model(TiangModel::class);
+        $data = [
+            'daftar_tiang' => $model->findAll(),
+            'title' => 'Peta Tiang',
+        ];
+
+        return view('templates/header', $data)
+            . view('aset/tiang_peta')
+            . view('templates/footer');
+    }
 }
