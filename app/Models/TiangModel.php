@@ -6,7 +6,8 @@ class TiangModel extends Model
 {
     protected $table = 'tiang';
     protected $allowedFields = ['no_tiang','latitude','longitude','foto'];
-
+    protected $primaryKey = 'id_tiang'; 
+    
     public function getTiang(int $id_tiang = null)
     {
         if ($id_tiang === null)

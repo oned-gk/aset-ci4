@@ -25,8 +25,8 @@ class Tiang extends BaseController
     {
         $model = model(TiangModel::class);
         $data = [
-            'daftar_tiang' => $model->where(['id_tiang'=>$id_tiang])->find(),
-            'title' => 'Tiang '.$id_tiang,
+            'daftar_tiang' => $model->where(['id_tiang' => $id_tiang])->find(),
+            'title' => 'Tiang ' . $id_tiang,
         ];
         return view('templates/header', $data)
             . view('aset/tiang_detail')
@@ -66,7 +66,8 @@ class Tiang extends BaseController
         $post = $this->validator->getValidated();
         $model = model(TiangModel::class);
         $image = $this->request->getFile('foto');
-        $image->move(ROOTPATH . 'public\uploads', 'sontoloyo.jpg');
+
+        $image->move(ROOTPATH . 'public\uploads\tiang', $image->getName());
 
         $model->save([
             'no_tiang' => $post['no_tiang'],
@@ -81,6 +82,7 @@ class Tiang extends BaseController
             . view('aset/tiang_baru_success')
             . view('templates/footer');
     }
+
     public function peta()
     {
         $model = model(TiangModel::class);
@@ -92,5 +94,11 @@ class Tiang extends BaseController
         return view('templates/header', $data)
             . view('aset/tiang_peta')
             . view('templates/footer');
+    }
+
+    public function delete(int $id_tiang=null)
+    {
+        model(TiangModel::class)->delete( ['id_tiang'=>$id_tiang]);
+        return redirect()->to('tiang');
     }
 }
