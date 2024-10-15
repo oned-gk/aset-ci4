@@ -6,7 +6,8 @@
         ID : <?= esc($tiang_item['id_tiang']) ?><br>
        
         Latitude : <?= esc($tiang_item['latitude']) ?><br>
-        Longitude : <?= esc($tiang_item['longitude']) ?>
+        Longitude : <?= esc($tiang_item['longitude']) ?><br>
+        <a href="#" onclick="history.go(-1)" class="btn btn-primary">Kembali</a>
         </p>
        
     <?php endforeach ?>
