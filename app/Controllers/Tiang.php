@@ -77,10 +77,8 @@ class Tiang extends BaseController
         ]);
 
         $data = ['title' => 'Tambah tiang baru'];
-
-        return view('templates/header', $data)
-            . view('aset/tiang_baru_success')
-            . view('templates/footer');
+        session()->setFlashdata('pesan','Data berhasil disimpan');
+        return redirect()->to('tiang');
     }
 
     public function peta()
@@ -99,6 +97,7 @@ class Tiang extends BaseController
     public function delete(int $id_tiang=null)
     {
         model(TiangModel::class)->delete( ['id_tiang'=>$id_tiang]);
+        session()->setFlashdata('pesan','Data berhasil dihapus.');
         return redirect()->to('tiang');
     }
 }
