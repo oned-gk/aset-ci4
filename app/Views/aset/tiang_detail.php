@@ -3,7 +3,8 @@
     <?php foreach ($daftar_tiang as $tiang_item): ?>
         <p>
         <h3> <?= esc($tiang_item['no_tiang']) ?></h3>
-        ID : <?= esc($tiang_item['id_tiang']) ?><br>       
+        ID : <?= esc($tiang_item['id_tiang']) ?><br>
+       
         Latitude : <?= esc($tiang_item['latitude']) ?><br>
         Longitude : <?= esc($tiang_item['longitude']) ?>
         </p>
