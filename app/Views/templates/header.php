@@ -261,7 +261,7 @@
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url('tiang')?>">
                 <span class="bi bi-tags"></span>
-                Tiang
+                Data Tiang
               </a>
             </li>
             <li class="nav-item">

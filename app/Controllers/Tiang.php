@@ -77,10 +77,43 @@ class Tiang extends BaseController
         ]);
 
         $data = ['title' => 'Tambah tiang baru'];
-        session()->setFlashdata('pesan','Data berhasil disimpan');
+        session()->setFlashdata('pesan','Data berhasil ditambahkan');
         return redirect()->to('tiang');
     }
+    public function update(int $id_tiang=null)
+    {
+        helper('form');
+        $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude']);
+        if (! $this->validateData($data, [
+            'no_tiang' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ], [
+            'no_tiang' => ['required' => 'Nomor tiang harap diisi!'],
+            'latitude' => ['required' => 'Latitude harap diisi!'],
+            'longitude' => ['required' => 'Longitude harap diisi!'],
+        ])) {
+            return $this->new();
+        }
 
+        $post = $this->validator->getValidated();
+        $model = model(TiangModel::class);
+        $image = $this->request->getFile('foto');
+
+        $image->move(ROOTPATH . 'public\uploads\tiang', $image->getName());
+
+        $model->save([
+            'id_tiang' => $id_tiang,
+            'no_tiang' => $post['no_tiang'],
+            'latitude' => $post['latitude'],
+            'longitude' => $post['longitude'],
+            'foto' => $image->getName(),
+        ]);
+
+        $data = ['title' => 'Tambah tiang baru'];
+        session()->setFlashdata('pesan','Data berhasil diubah');
+        return redirect()->to('tiang');
+    }
     public function peta()
     {
         $model = model(TiangModel::class);

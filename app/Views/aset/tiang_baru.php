@@ -7,7 +7,7 @@
         </h5>
     </div>
     <div class="card-body">
-        <form action="/tiang" method="post" enctype="multipart/form-data">
+        <form action="/tiang/insert" method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>
             <div class="mb-3">
                 <label for="no_tiang" class="form-label">Nomor Tiang</label>
