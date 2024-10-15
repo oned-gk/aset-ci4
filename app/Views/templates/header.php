@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
+  <head><script src="<?= base_url('assets/js/color-modes.js')?>"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link rel="stylesheet" href="<?= base_url('assets/icons-1.11.3/font/bootstrap-icons.min.css')?>">
     <!-- gmap3 -->
-    <link href="../styles.css" rel="stylesheet">
+    <link href="<?= base_url('assets/styles.css')?>" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEmGuIceexKma4Q6yyRD8M-KS5vbPtUVM">
 
     </script><script src="https://code.jquery.com/jquery-2.1.4.min.js">
@@ -31,7 +31,7 @@
   background-size: 1rem 1rem;
 }
 </style>
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?= base_url('assets/dist/css/bootstrap.min.css')?>" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -116,7 +116,7 @@
     <!-- Custom styles for this template -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="../assets/css/dashboard.css" rel="stylesheet">
+    <link href="<?= base_url('assets/css/dashboard.css')?>" rel="stylesheet">
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">

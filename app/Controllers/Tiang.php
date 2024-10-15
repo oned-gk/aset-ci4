@@ -47,7 +47,7 @@ class Tiang extends BaseController
     //Latitude: -85 to +85 (actually -85.05115 for some reason)
     //Longitude: -180 to +180
 
-    public function create()
+    public function insert()
     {
         helper('form');
         $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude']);
@@ -99,5 +99,18 @@ class Tiang extends BaseController
         model(TiangModel::class)->delete( ['id_tiang'=>$id_tiang]);
         session()->setFlashdata('pesan','Data berhasil dihapus.');
         return redirect()->to('tiang');
+    }
+
+    public function edit(int $id_tiang=null)
+    {
+        helper('form');
+        $model = model(TiangModel::class);
+        $data = [
+            'daftar_tiang' => $model->where(['id_tiang' => $id_tiang])->find(),
+            'title' => 'Edit Tiang ' . $id_tiang,
+        ];
+        return view('templates/header', $data)
+            . view('aset/tiang_edit')
+            . view('templates/footer');
     }
 }

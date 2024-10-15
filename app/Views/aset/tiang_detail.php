@@ -9,7 +9,7 @@
 
     </p>
     <a href="#" onclick="history.go(-1)" class="btn btn-primary">Kembali</a>
-    <a href="#" class="btn btn-warning">Edit</a>
+    <a href="<?= base_url('tiang/edit').'/'.esc($daftar_tiang[0]['id_tiang']) ?>" class="btn btn-warning">Edit</a>
     <form action="<?= esc($daftar_tiang[0]['id_tiang']) ?>" method="post" class="d-inline">
         <?= csrf_field();?>
         <button type="submit" onclick="return confirm('Apakah Anda yakin')" class="btn btn-danger">Hapus</button>
