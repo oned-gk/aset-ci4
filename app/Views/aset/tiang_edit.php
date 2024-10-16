@@ -8,7 +8,8 @@
     </div>
     <div class="card-body">
         <form action="/tiang/update/<?= esc($daftar_tiang[0]['id_tiang']) ?>" method="post" enctype="multipart/form-data">
-            <?= csrf_field() ?>          
+            <?= csrf_field() ?>      
+                
             <div class="mb-3">
                 <label for="no_tiang" class="form-label">Nomor Tiang</label>
                 <input type="text" name="no_tiang" class="form-control" id="no_tiang" placeholder="KMOCLP-000001" value="<?= esc($daftar_tiang[0]['no_tiang']) ?>">

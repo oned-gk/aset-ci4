@@ -11,7 +11,7 @@ class Tiang extends BaseController
         $currentPage = $this->request->getVar('page_tiang') ? $this->request->getVar('page_tiang') : 1;
         $model = model(TiangModel::class);
         $data = [
-            'daftar_tiang' => $model->orderBy('id_tiang')->paginate(10, 'tiang'),
+            'daftar_tiang' => $model->orderBy('no_tiang')->paginate(10, 'tiang'),
             'title' => 'Tiang',
             'pager' => $model->pager,
             'currentPage' => $currentPage,
@@ -51,10 +51,16 @@ class Tiang extends BaseController
     {
         helper('form');
         $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude']);
+
         if (! $this->validateData($data, [
             'no_tiang' => 'required',
             'latitude' => 'required',
             'longitude' => 'required',
+            'foto' => [
+                'uploaded[foto]',
+                'mime_in[foto,image/jpg,image/jpeg,image/gif,image/png]',
+                'max_size[foto,4096]',
+            ],
         ], [
             'no_tiang' => ['required' => 'Nomor tiang harap diisi!'],
             'latitude' => ['required' => 'Latitude harap diisi!'],
@@ -66,21 +72,23 @@ class Tiang extends BaseController
         $post = $this->validator->getValidated();
         $model = model(TiangModel::class);
         $image = $this->request->getFile('foto');
-
-        $image->move(ROOTPATH . 'public\uploads\tiang', $image->getName());
-
+        $imagename = '';
+        if (!empty($image->getName())) {
+            $imagename = $image->getName();
+            $image->move(ROOTPATH . 'public\uploads\tiang', $imagename);
+        }
         $model->save([
             'no_tiang' => $post['no_tiang'],
             'latitude' => $post['latitude'],
             'longitude' => $post['longitude'],
-            'foto' => $image->getName(),
+            'foto' => $imagename,
         ]);
 
         $data = ['title' => 'Tambah tiang baru'];
-        session()->setFlashdata('pesan','Data berhasil ditambahkan');
+        session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
         return redirect()->to('tiang');
     }
-    public function update(int $id_tiang=null)
+    public function update(int $id_tiang = null)
     {
         helper('form');
         $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude']);
@@ -99,19 +107,31 @@ class Tiang extends BaseController
         $post = $this->validator->getValidated();
         $model = model(TiangModel::class);
         $image = $this->request->getFile('foto');
+        $imagename = '';
+        if (!empty($image->getName())) {
+            $imagename = $image->getName();
+            $image->move(ROOTPATH . 'public\uploads\tiang', $imagename);
+            $model->save([
+                'id_tiang' => $id_tiang,
+                'no_tiang' => $post['no_tiang'],
+                'latitude' => $post['latitude'],
+                'longitude' => $post['longitude'],
+                'foto' => $imagename,
+            ]);
+        } else {
+            $model->save([
+                'id_tiang' => $id_tiang,
+                'no_tiang' => $post['no_tiang'],
+                'latitude' => $post['latitude'],
+                'longitude' => $post['longitude'],
+            ]);
+        }
 
-        $image->move(ROOTPATH . 'public\uploads\tiang', $image->getName());
 
-        $model->save([
-            'id_tiang' => $id_tiang,
-            'no_tiang' => $post['no_tiang'],
-            'latitude' => $post['latitude'],
-            'longitude' => $post['longitude'],
-            'foto' => $image->getName(),
-        ]);
+
 
         $data = ['title' => 'Tambah tiang baru'];
-        session()->setFlashdata('pesan','Data berhasil diubah');
+        session()->setFlashdata('pesan', 'Data berhasil diubah');
         return redirect()->to('tiang');
     }
     public function peta()
@@ -127,14 +147,14 @@ class Tiang extends BaseController
             . view('templates/footer');
     }
 
-    public function delete(int $id_tiang=null)
+    public function delete(int $id_tiang = null)
     {
-        model(TiangModel::class)->delete( ['id_tiang'=>$id_tiang]);
-        session()->setFlashdata('pesan','Data berhasil dihapus.');
+        model(TiangModel::class)->delete(['id_tiang' => $id_tiang]);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('tiang');
     }
 
-    public function edit(int $id_tiang=null)
+    public function edit(int $id_tiang = null)
     {
         helper('form');
         $model = model(TiangModel::class);
