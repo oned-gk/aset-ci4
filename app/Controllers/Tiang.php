@@ -11,7 +11,7 @@ class Tiang extends BaseController
         $currentPage = $this->request->getVar('page_tiang') ? $this->request->getVar('page_tiang') : 1;
         $model = model(TiangModel::class);
         $data = [
-            'daftar_tiang' => $model->paginate(10, 'tiang'),
+            'daftar_tiang' => $model->orderBy('id_tiang')->paginate(10, 'tiang'),
             'title' => 'Tiang',
             'pager' => $model->pager,
             'currentPage' => $currentPage,

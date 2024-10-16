@@ -1,5 +1,5 @@
 <?= session()->getFlashdata('error') ?>
-<?= validation_list_errors() ?>
+<?= validation_list_errors('list_toasts') ?>
 <div class="card">
     <div class="card-header">
         <h5 class="card-title">

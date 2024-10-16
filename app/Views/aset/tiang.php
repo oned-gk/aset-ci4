@@ -31,18 +31,18 @@
 
   <?php if (session()->getFlashdata('pesan')) : ?>
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-    <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="10000" data-bs-autohide="true">
-      <div class="toast-header bg-primary text-white">
-        <span class="bi bi-info-circle-fill mr-2"></span>
-        <strong class="me-auto">Pesan</strong>
-        <!-- <small>11 mins ago</small> -->
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-          <?= session()->getFlashdata('pesan')?>
+      <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="10000" data-bs-autohide="true">
+        <div class="toast-header bg-primary text-white">
+          <span class="bi bi-info-circle-fill mr-2"></span>
+          <strong class="me-auto">Pesan</strong>
+          <!-- <small>11 mins ago</small> -->
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          <?= session()->getFlashdata('pesan') ?><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
       </div>
     </div>
-  </div>
   <?php endif; ?>
 
 <?php else: ?>
