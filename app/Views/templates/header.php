@@ -11,13 +11,13 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <script src="<?= base_url('assets/jquery/jquery.js')?>"></script>
+    <link rel="stylesheet" href="<?= base_url('assets/jquery-ui-1.14.0/jquery-ui.css')?>">
+    <script src="<?= base_url('assets/jquery-ui-1.14.0/jquery-ui.js')?>"></script>
     <link rel="stylesheet" href="<?= base_url('assets/icons-1.11.3/font/bootstrap-icons.min.css')?>">
     <!-- gmap3 -->
     <link href="<?= base_url('assets/styles.css')?>" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEmGuIceexKma4Q6yyRD8M-KS5vbPtUVM">
-
-    </script><script src="https://code.jquery.com/jquery-2.1.4.min.js">
-
     </script><script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script>
     <!-- end gmap3 -->
 <style>
@@ -271,12 +271,12 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a class="nav-link d-flex align-items-center gap-2" href="<?= base_url('kelurahan')?>">
                 <svg class="bi"><use xlink:href="#cart"/></svg>
-                Products
+                Kelurahan
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="#">
                 <svg class="bi"><use xlink:href="#people"/></svg>
                 Customers
@@ -293,10 +293,10 @@
                 <svg class="bi"><use xlink:href="#puzzle"/></svg>
                 Integrations
               </a>
-            </li>
+            </li> -->
           </ul>
 
-          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+          <!-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
             <span>Saved reports</span>
             <a class="link-secondary" href="#" aria-label="Add a new report">
               <svg class="bi"><use xlink:href="#plus-circle"/></svg>
@@ -327,7 +327,7 @@
                 Year-end sale
               </a>
             </li>
-          </ul>
+          </ul> -->
 
           <hr class="my-3">
 

@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use app\Models\KabKotModel;
 use App\Models\TiangModel;
+
 
 class Tiang extends BaseController
 {
@@ -165,5 +167,33 @@ class Tiang extends BaseController
         return view('templates/header', $data)
             . view('aset/tiang_edit')
             . view('templates/footer');
+    }
+
+    public function kabkot()
+    {
+        $request = service('request');
+        $postData = $request()->getPost();
+        $response = array();
+        $response['token'] = csrf_hash();
+        $data = array();
+
+        if (isset($postData['search'])) {
+            $model = model(KabKotModel::class);
+            $search = $postData['search'];
+            $kabkotlist = $model->select('id,kabupaten_kota')
+                ->like('kabupaten_kota', $search)
+                ->orderBy('kabupaten_kota')
+                ->findAll(10);
+
+            foreach ($kabkotlist as $kabkot) {
+                $data[] = array(
+                    "value" => $kabkot['id'],
+                    "label" => $kabkot['kabupaten_kota'],
+                );
+            }
+            $response['data'] = $data;
+            return $this->response->setJSON($response);
+        }
+           
     }
 }

@@ -30,25 +30,26 @@
   <?= $pager->links('tiang', 'bootstrap_full') ?>
 
   <?php if (session()->getFlashdata('pesan')) : ?>
-    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-      <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="10000" data-bs-autohide="true">
-        <div class="toast-header bg-primary text-white">
-          <span class="bi bi-info-circle-fill mr-2"></span>
-          <strong class="me-auto">Pesan</strong>
-          <!-- <small>11 mins ago</small> -->
-          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body">
-          <?= session()->getFlashdata('pesan') ?><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+      <div class="toast-container top-0 end-0 p-1">
+        <div class="toast show text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <span class="bi bi-info-circle-fill"></span>
+            <strong class="me-auto">Info saja</strong>
+            <!-- <small>11 mins ago</small> -->
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            <?= session()->getFlashdata('pesan') ?>
+          </div>
         </div>
       </div>
-    </div>
-  <?php endif; ?>
+    <?php endif; ?>
 
-<?php else: ?>
+  <?php else: ?>
 
-  <h3>No News</h3>
+    <h3>No News</h3>
 
-  <p>Unable to find any news for you.</p>
+    <p>Unable to find any news for you.</p>
 
-<?php endif ?>
+  <?php endif ?>
