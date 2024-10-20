@@ -7,7 +7,7 @@
   const ctx = document.getElementById('myChart')
   // eslint-disable-next-line no-unused-vars
   const myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'pie',
     data: {
       labels: [
         'Sunday',
@@ -29,7 +29,11 @@
           12034
         ],
         lineTension: 0,
-        backgroundColor: 'transparent',
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)'
+        ],
         borderColor: '#007bff',
         borderWidth: 4,
         pointBackgroundColor: '#007bff'
