@@ -27,22 +27,13 @@
           23489,
           24092,
           12034
-        ],
-        lineTension: 0,
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
-        ],
-        borderColor: '#007bff',
-        borderWidth: 4,
-        pointBackgroundColor: '#007bff'
+        ],       
       }]
     },
     options: {
       plugins: {
         legend: {
-          display: false
+          display: true
         },
         tooltip: {
           boxPadding: 3
