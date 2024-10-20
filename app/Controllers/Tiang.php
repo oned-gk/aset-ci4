@@ -22,12 +22,12 @@ class Tiang extends BaseController
             . view('templates/footer');
     }
 
-    public function detail(int $id_tiang = null)
+    public function detail(int $id = null)
     {
         $model = model(TiangModel::class);
         $data = [
-            'daftar_tiang' => $model->where(['id_tiang' => $id_tiang])->find(),
-            'title' => 'Tiang ' . $id_tiang,
+            'daftar_tiang' => $model->where(['id' => $id])->find(),
+            'title' => 'Tiang ' . $id,
         ];
         return view('templates/header', $data)
             . view('aset/tiang_detail')
@@ -94,7 +94,7 @@ class Tiang extends BaseController
         session()->setFlashdata('pesan', 'Data berhasil ditambahkan');
         return redirect()->to('tiang');
     }
-    public function update(int $id_tiang = null)
+    public function update(int $id = null)
     {
         $request = service('request');
         helper('form');
@@ -119,7 +119,7 @@ class Tiang extends BaseController
             $imagename = $image->getName();
             $image->move(ROOTPATH . 'public\uploads\tiang', $imagename);
             $model->save([
-                'id_tiang' => $id_tiang,
+                'id' => $id,
                 'no_tiang' => $post['no_tiang'],
                 'latitude' => $post['latitude'],
                 'longitude' => $post['longitude'],
@@ -132,7 +132,7 @@ class Tiang extends BaseController
             ]);
         } else {
             $model->save([
-                'id_tiang' => $id_tiang,
+                'id' => $id,
                 'no_tiang' => $post['no_tiang'],
                 'latitude' => $post['latitude'],
                 'longitude' => $post['longitude'],
@@ -160,20 +160,20 @@ class Tiang extends BaseController
             . view('templates/footer');
     }
 
-    public function delete(int $id_tiang = null)
+    public function delete(int $id = null)
     {
-        model(TiangModel::class)->delete(['id_tiang' => $id_tiang]);
+        model(TiangModel::class)->delete(['id' => $id]);
         session()->setFlashdata('pesan', 'Data berhasil dihapus.');
         return redirect()->to('tiang');
     }
 
-    public function edit(int $id_tiang = null)
+    public function edit(int $id = null)
     {
         helper('form');
         $model = model(TiangModel::class);
         $data = [
-            'daftar_tiang' => $model->where(['id_tiang' => $id_tiang])->find(),
-            'title' => 'Edit Tiang ' . $id_tiang,
+            'daftar_tiang' => $model->where(['id' => $id])->find(),
+            'title' => 'Edit Tiang ' . $id,
         ];
         return view('templates/header', $data)
             . view('aset/tiang_edit')

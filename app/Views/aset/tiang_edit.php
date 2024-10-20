@@ -3,11 +3,11 @@
 <div class="card">
     <div class="card-header">
         <h5 class="card-title">
-            EDIT TIANG (id=<?= esc($daftar_tiang[0]['id_tiang']) ?>)
+            EDIT TIANG (id=<?= esc($daftar_tiang[0]['id']) ?>)
         </h5>
     </div>
     <div class="card-body">
-        <form action="/tiang/update/<?= esc($daftar_tiang[0]['id_tiang']) ?>" method="post" enctype="multipart/form-data" class="row gx-3 gy-1">
+        <form action="/tiang/update/<?= esc($daftar_tiang[0]['id']) ?>" method="post" enctype="multipart/form-data" class="row gx-3 gy-1">
             <?= csrf_field() ?>      
             <input type="hidden" class="txt_csrfname" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
             <div class="col-6">

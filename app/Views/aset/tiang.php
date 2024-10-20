@@ -17,7 +17,7 @@
         <?php foreach ($daftar_tiang as $tiang_item): ?>
           <tr>
             <td><?= $urut++; ?></td>
-            <td><a href="/tiang/<?= esc($tiang_item['id_tiang'], 'url') ?>"><?= esc($tiang_item['no_tiang']) ?></a></td>
+            <td><a href="/tiang/<?= esc($tiang_item['id'], 'url') ?>"><?= esc($tiang_item['no_tiang']) ?></a></td>
             <td><?= esc($tiang_item['latitude']) ?></td>
             <td><?= esc($tiang_item['longitude']) ?></td>
             <td>-</td>

@@ -2,15 +2,15 @@
 
     <p>
     <h3> <?= esc($daftar_tiang[0]['no_tiang']) ?></h3>
-    ID : <?= esc($daftar_tiang[0]['id_tiang']) ?><br>
+    ID : <?= esc($daftar_tiang[0]['id']) ?><br>
 
     Latitude : <?= esc($daftar_tiang[0]['latitude']) ?><br>
     Longitude : <?= esc($daftar_tiang[0]['longitude']) ?><br>
 
     </p>
     <a href="#" onclick="history.go(-1)" class="btn btn-primary">Kembali</a>
-    <a href="<?= base_url('tiang/edit').'/'.esc($daftar_tiang[0]['id_tiang']) ?>" class="btn btn-warning">Edit</a>
-    <form action="<?= esc($daftar_tiang[0]['id_tiang']) ?>" method="post" class="d-inline">
+    <a href="<?= base_url('tiang/edit').'/'.esc($daftar_tiang[0]['id']) ?>" class="btn btn-warning">Edit</a>
+    <form action="<?= esc($daftar_tiang[0]['id']) ?>" method="post" class="d-inline">
         <?= csrf_field();?>
         <button type="submit" onclick="return confirm('Apakah Anda yakin')" class="btn btn-danger">Hapus</button>
         <input type="hidden" name="_method" value="DELETE"/>

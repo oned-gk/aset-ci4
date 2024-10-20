@@ -13,6 +13,6 @@ class KabKotModel extends Model{
         {
             return $this->findAll();
         }
-        return $this->where(['id_tiang'=>$$cari])->find();
+        return $this->where(['id'=>$$cari])->find();
     }    
 }

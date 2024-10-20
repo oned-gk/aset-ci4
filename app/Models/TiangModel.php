@@ -4,17 +4,17 @@ use CodeIgniter\Model;
 
 class TiangModel extends Model
 {
-    protected $table = 'tiang';
+    protected $table = 'tbl_tiang';
     protected $allowedFields = ['no_tiang','latitude','longitude','foto','kelurahan','kecamatan','kabupaten','provinsi','jalan'];
-    protected $primaryKey = 'id_tiang'; 
+    protected $primaryKey = 'id'; 
     
-    public function getTiang(int $id_tiang = null)
+    public function getTiang(int $id = null)
     {
-        if ($id_tiang === null)
+        if ($id === null)
         {
             return $this->findAll();
         }
-        return $this->where(['id_tiang'=>$id_tiang])->find();
+        return $this->where(['id'=>$id])->find();
     }    
 
 }

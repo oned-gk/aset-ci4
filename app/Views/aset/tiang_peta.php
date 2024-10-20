@@ -39,7 +39,7 @@
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         var markers = [
             <?php if ($daftar_tiang !== []): ?>
-                <?php foreach ($daftar_tiang as $tiang_item): ?>['<?= esc($tiang_item['no_tiang']) ?>', <?= esc($tiang_item['latitude']) ?>, <?= esc($tiang_item['longitude']) ?>, <?= esc($tiang_item['id_tiang']) ?>],
+                <?php foreach ($daftar_tiang as $tiang_item): ?>['<?= esc($tiang_item['no_tiang']) ?>', <?= esc($tiang_item['latitude']) ?>, <?= esc($tiang_item['longitude']) ?>, <?= esc($tiang_item['id']) ?>],
                 <?php endforeach ?>
             <?php else: ?>
             <?php endif ?>
