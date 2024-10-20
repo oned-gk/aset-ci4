@@ -6,9 +6,10 @@
       <tr>
         <th scope="col">No</th>
         <th scope="col">Nomor Tiang</th>
-        <th scope="col">Latitude</th>
-        <th scope="col">Longitute</th>
-        <th scope="col">Foto</th>
+        <th scope="col">Jalan</th>
+        <th scope="col">Kekurahan</th>
+        <th scope="col">Kecamatan</th>
+        <th scope="col">Kab/Kot</th>
       </tr>
     </thead>
     <tbody>
@@ -17,10 +18,11 @@
         <?php foreach ($daftar_tiang as $tiang_item): ?>
           <tr>
             <td><?= $urut++; ?></td>
-            <td><a href="/tiang/<?= esc($tiang_item['id'], 'url') ?>"><?= esc($tiang_item['no_tiang']) ?></a></td>
-            <td><?= esc($tiang_item['latitude']) ?></td>
-            <td><?= esc($tiang_item['longitude']) ?></td>
-            <td>-</td>
+            <td><a href="/tiang/<?= esc($tiang_item['id'], 'url') ?>"><?= empty(esc($tiang_item['no_tiang']))?'tidak ada':esc($tiang_item['no_tiang']) ?></a></td>
+            <td><?= esc($tiang_item['jalan']) ?></td>
+            <td><?= esc($tiang_item['kelurahan']) ?></td>
+            <td><?= esc($tiang_item['kecamatan']) ?></td>
+            <td><?= esc($tiang_item['kabupaten']) ?></td>
           </tr>
         <?php endforeach ?>
     </tbody>
