@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class TiangModel extends Model
 {
     protected $table = 'tiang';
-    protected $allowedFields = ['no_tiang','latitude','longitude','foto'];
+    protected $allowedFields = ['no_tiang','latitude','longitude','foto','kelurahan','kecamatan','kabupaten','provinsi','jalan'];
     protected $primaryKey = 'id_tiang'; 
     
     public function getTiang(int $id_tiang = null)

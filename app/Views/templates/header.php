@@ -14,6 +14,7 @@
     <script src="<?= base_url('assets/jquery/jquery.js')?>"></script>
     <link rel="stylesheet" href="<?= base_url('assets/jquery-ui-1.14.0/jquery-ui.css')?>">
     <script src="<?= base_url('assets/jquery-ui-1.14.0/jquery-ui.js')?>"></script>
+    <script src="<?= base_url('assets/jquery-ui-1.14.0/jquery.ui.autocomplete.scroll.js')?>"></script>
     <link rel="stylesheet" href="<?= base_url('assets/icons-1.11.3/font/bootstrap-icons.min.css')?>">
     <!-- gmap3 -->
     <link href="<?= base_url('assets/styles.css')?>" rel="stylesheet">
@@ -221,7 +222,7 @@
   </symbol>
 </svg>
 
-<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+<header class="navbar sticky-top bg-danger flex-md-nowrap p-0 shadow" data-bs-theme="dark">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">Panglima Kamayo</a>
 
   <ul class="navbar-nav flex-row d-md-none">
@@ -244,8 +245,8 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-      <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-danger-subtle">
+      <div class="offcanvas-md offcanvas-end bg-danger-subtle" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="sidebarMenuLabel">Panglima Kamayo</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>

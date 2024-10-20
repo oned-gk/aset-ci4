@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use app\Models\KabKotModel;
 use App\Models\TiangModel;
 
 
@@ -52,8 +51,8 @@ class Tiang extends BaseController
     public function insert()
     {
         helper('form');
-        $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude']);
-
+        $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude', 'kelurahan', 'kecamatan', 'kabupaten', 'provinsi', 'jalan']);
+        $request = service('request');
         if (! $this->validateData($data, [
             'no_tiang' => 'required',
             'latitude' => 'required',
@@ -84,6 +83,11 @@ class Tiang extends BaseController
             'latitude' => $post['latitude'],
             'longitude' => $post['longitude'],
             'foto' => $imagename,
+            'kelurahan' =>  $request->getPost('kelurahan'),
+            'kecamatan' => $request->getPost('kecamatan'),
+            'kabupaten' => $request->getPost('kabupaten'),
+            'provinsi' => $request->getPost('provinsi'),
+            'jalan' => $request->getPost('jalan'),
         ]);
 
         $data = ['title' => 'Tambah tiang baru'];
@@ -92,8 +96,9 @@ class Tiang extends BaseController
     }
     public function update(int $id_tiang = null)
     {
+        $request = service('request');
         helper('form');
-        $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude']);
+        $data = $this->request->getPost(['no_tiang', 'latitude', 'longitude', 'kelurahan', 'kecamatan', 'kabupaten', 'provinsi', 'jalan']);
         if (! $this->validateData($data, [
             'no_tiang' => 'required',
             'latitude' => 'required',
@@ -119,6 +124,11 @@ class Tiang extends BaseController
                 'latitude' => $post['latitude'],
                 'longitude' => $post['longitude'],
                 'foto' => $imagename,
+                'kelurahan' =>  $request->getPost('kelurahan'),
+                'kecamatan' => $request->getPost('kecamatan'),
+                'kabupaten' => $request->getPost('kabupaten'),
+                'provinsi' => $request->getPost('provinsi'),
+                'jalan' => $request->getPost('jalan'),
             ]);
         } else {
             $model->save([
@@ -126,12 +136,13 @@ class Tiang extends BaseController
                 'no_tiang' => $post['no_tiang'],
                 'latitude' => $post['latitude'],
                 'longitude' => $post['longitude'],
+                'kelurahan' =>  $request->getPost('kelurahan'),
+                'kecamatan' => $request->getPost('kecamatan'),
+                'kabupaten' => $request->getPost('kabupaten'),
+                'provinsi' => $request->getPost('provinsi'),
+                'jalan' => $request->getPost('jalan'),
             ]);
         }
-
-
-
-
         $data = ['title' => 'Tambah tiang baru'];
         session()->setFlashdata('pesan', 'Data berhasil diubah');
         return redirect()->to('tiang');
@@ -167,33 +178,5 @@ class Tiang extends BaseController
         return view('templates/header', $data)
             . view('aset/tiang_edit')
             . view('templates/footer');
-    }
-
-    public function kabkot()
-    {
-        $request = service('request');
-        $postData = $request()->getPost();
-        $response = array();
-        $response['token'] = csrf_hash();
-        $data = array();
-
-        if (isset($postData['search'])) {
-            $model = model(KabKotModel::class);
-            $search = $postData['search'];
-            $kabkotlist = $model->select('id,kabupaten_kota')
-                ->like('kabupaten_kota', $search)
-                ->orderBy('kabupaten_kota')
-                ->findAll(10);
-
-            foreach ($kabkotlist as $kabkot) {
-                $data[] = array(
-                    "value" => $kabkot['id'],
-                    "label" => $kabkot['kabupaten_kota'],
-                );
-            }
-            $response['data'] = $data;
-            return $this->response->setJSON($response);
-        }
-           
     }
 }
