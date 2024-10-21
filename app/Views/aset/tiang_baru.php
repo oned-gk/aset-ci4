@@ -1,12 +1,16 @@
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors('list_toasts') ?>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2"><?= esc($title) ?></h2>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="#" onclick="history.go(-1)" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                    <a href="<?=base_url('tiang')?>" class="btn btn-sm btn-outline-secondary">Data Tiang</a>
+                </div>
+            </div>
+        </div>
 <div class="card shadow shadow-lg bg-light">
-    <div class="card-header">
-        <h5 class="card-title">
-            TIANG BARU
-        </h5>
-    </div>
-    <div class="card-body">
+<div class="card-body">
         <form action="/tiang/insert" method="post" enctype="multipart/form-data" class="row gx-3 gy-1">
             <?= csrf_field() ?>
             <input type="hidden" class="txt_csrfname" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />

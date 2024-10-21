@@ -1,21 +1,40 @@
 <?php if ($daftar_tiang !== []): ?>
-
-    <p>
-    <h3> <?= esc($daftar_tiang[0]['no_tiang']) ?></h3>
-    ID : <?= esc($daftar_tiang[0]['id']) ?><br>
-
-    Latitude : <?= esc($daftar_tiang[0]['latitude']) ?><br>
-    Longitude : <?= esc($daftar_tiang[0]['longitude']) ?><br>
-
-    </p>
-    <a href="#" onclick="history.go(-1)" class="btn btn-primary">Kembali</a>
-    <a href="<?= base_url('tiang/edit').'/'.esc($daftar_tiang[0]['id']) ?>" class="btn btn-warning">Edit</a>
     <form action="<?= esc($daftar_tiang[0]['id']) ?>" method="post" class="d-inline">
-        <?= csrf_field();?>
-        <button type="submit" onclick="return confirm('Apakah Anda yakin')" class="btn btn-danger">Hapus</button>
-        <input type="hidden" name="_method" value="DELETE"/>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2 class="h2"><?= esc($title) ?></h2>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <a href="<?= base_url('tiang/edit') . '/' . esc($daftar_tiang[0]['id']) ?>" class="btn btn-sm btn-outline-primary">Edit</a>
+                    <button type="submit" onclick="return confirm('Apakah Anda yakin')" class="btn btn-sm btn-outline-danger">Hapus</button>
+                    <a class="btn btn-sm btn-outline-primary" href="<?= base_url('tiang/new') ?>">Baru</a>
+                    <a href="#" onclick="history.go(-1)" class="btn btn-sm btn-outline-secondary">Kembali</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <?= !empty(esc($daftar_tiang[0]['jalan'])) ? 'Jln. ' . esc($daftar_tiang[0]['jalan']) : '' ?>
+                        <?= !empty(esc($daftar_tiang[0]['kelurahan'])) ? ' ' . esc($daftar_tiang[0]['kelurahan']) : '' ?>
+                        <?= !empty(esc($daftar_tiang[0]['kecamatan'])) ? ', ' . esc($daftar_tiang[0]['kecamatan']) : '' ?>
+                        <?= !empty(esc($daftar_tiang[0]['kabupaten'])) ? ', ' . esc($daftar_tiang[0]['kabupaten']) : '' ?>
+                        <?= !empty(esc($daftar_tiang[0]['provinsi'])) ? ', ' . esc($daftar_tiang[0]['provinsi']) : '' ?>
+                    </div>
+                    <img src="<?= base_url('uploads/tiang') . '/' . esc($daftar_tiang[0]['foto']) ?>" class="card-img-botton" alt="<?= esc($daftar_tiang[0]['foto']) ?>">
+                </div>
+            </div>
+            <div class="col-6">
+                <div id="map_wrapper">
+                    <div id="map_canvas" class="mapping"></div>
+                </div>
+            </div>
+        </div>
+
+        <?= csrf_field(); ?>
+        <input type="hidden" name="_method" value="DELETE" />
     </form>
-   
+
 
 <?php else: ?>
 
@@ -24,10 +43,9 @@
     <p>Unable to find any news for you.</p>
 
 <?php endif ?>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<div id="map_wrapper">
-    <div id="map_canvas" class="mapping"></div>
-</div>
+
 
 <style type="text/css">
     #map_wrapper {

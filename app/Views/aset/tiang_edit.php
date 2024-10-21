@@ -1,11 +1,19 @@
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors('list_toasts') ?>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h2 class="h2"><?= esc($title) ?></h2>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group me-2">      
+      <a href="#" onclick="history.go(-1)" class="btn btn-sm btn-outline-secondary">Kembali</a>
+    </div>
+  </div>
+</div>
 <div class="card">
     <div class="card-header">
         <h5 class="card-title">
-            EDIT TIANG (id=<?= esc($daftar_tiang[0]['id']) ?>)
+            TIANG (id=<?= esc($daftar_tiang[0]['id']) ?>)
         </h5>
-    </div>
+    </div>    
     <div class="card-body">
         <form action="/tiang/update/<?= esc($daftar_tiang[0]['id']) ?>" method="post" enctype="multipart/form-data" class="row gx-3 gy-1">
             <?= csrf_field() ?>      
@@ -39,8 +47,7 @@
                 <input type="file" name="foto" class="form-control">
             </div>
             <div class="col-12">
-                <input type="submit" name="submit" class="btn btn-primary" id="submit" value="Simpan">
-                <a href="#" onclick="history.go(-1)" class="btn btn-warning">Batal</a>
+                <input type="submit" name="submit" class="btn btn-primary" id="submit" value="Simpan">                
             </div>
         </form>
     </div>

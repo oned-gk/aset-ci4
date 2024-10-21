@@ -13,7 +13,7 @@ class Tiang extends BaseController
         $model = model(TiangModel::class);
         $data = [
             'daftar_tiang' => $model->orderBy('no_tiang')->paginate(10, 'tiang'),
-            'title' => 'Tiang',
+            'title' => 'Data Tiang',
             'pager' => $model->pager,
             'currentPage' => $currentPage,
         ];
@@ -27,7 +27,7 @@ class Tiang extends BaseController
         $model = model(TiangModel::class);
         $data = [
             'daftar_tiang' => $model->where(['id' => $id])->find(),
-            'title' => 'Tiang ' . $id,
+            'title' => 'Tiang '.$model->where(['id' => $id])->find()[0]['no_tiang'],
         ];
         return view('templates/header', $data)
             . view('aset/tiang_detail')
@@ -38,7 +38,7 @@ class Tiang extends BaseController
     {
         helper('form');
         $data = [
-            'title'     => 'Detail Tiang'
+            'title'     => 'Tambah tiang baru'
         ];
         return view('templates/header', $data)
             . view('aset/tiang_baru')
