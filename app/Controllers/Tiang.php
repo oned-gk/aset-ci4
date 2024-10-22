@@ -27,7 +27,7 @@ class Tiang extends BaseController
         $model = model(TiangModel::class);
         $data = [
             'daftar_tiang' => $model->where(['id' => $id])->find(),
-            'title' => 'Tiang '.$model->where(['id' => $id])->find()[0]['no_tiang'],
+            'title' => 'Tiang ' . $model->where(['id' => $id])->find()[0]['no_tiang'],
         ];
         return view('templates/header', $data)
             . view('aset/tiang_detail')
@@ -179,4 +179,5 @@ class Tiang extends BaseController
             . view('aset/tiang_edit')
             . view('templates/footer');
     }
+    
 }

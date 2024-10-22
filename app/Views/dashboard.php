@@ -13,141 +13,97 @@
     </button>
   </div>
 </div>
-<div class="card">
-  <div class="card-header">
-    <h5 class="card-title">Grafik</h5>
+<?php if ($grafik1 !== []): ?>
+  <div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <canvas id="Grafik1" width="900" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <?php $urut = 1  ?>
+      <?php foreach ($grafik1 as $grafik1_item): ?>
+
+        <?= $urut++; ?>
+        <?= esc($grafik1_item['kecamatan']) ?> :
+        <?= esc($grafik1_item['jumlah']) ?><br>
+
+        </tr>
+      <?php endforeach ?>
+    </div>
   </div>
-  <div class="card-body">
-    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-  </div>
-</div>
-<h2>Section title</h2>
+<?php endif; ?>
+<?php if ($grafik1 !== []): ?>
+<h2>Jumlah Tiang per Kelurahan</h2>
 <div class="table-responsive small">
   <table class="table table-striped table-sm">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
-        <th scope="col">Header</th>
+        <th scope="col">No</th>
+        <th scope="col">Kelurahan</th>
+        <th scope="col">jumlah</th>
+        <th scope="col">Kecamatan</th>
+        <th scope="col">Kabupaten</th>       
       </tr>
     </thead>
     <tbody>
+    <?php $urut = 1  ?>
+    <?php foreach ($grid1 as $grid1_item): ?>
+      
+      
       <tr>
-        <td>1,001</td>
-        <td>random</td>
-        <td>data</td>
-        <td>placeholder</td>
-        <td>text</td>
+        <td><?= $urut++; ?></td>
+        <td><?= esc($grid1_item['kelurahan']) ?></td>
+        <td><?= esc($grid1_item['jumlah']) ?></td>
+        <td><?= esc($grid1_item['kecamatan']) ?></td>
+        <td><?= esc($grid1_item['kabupaten']) ?></td>
       </tr>
-      <tr>
-        <td>1,002</td>
-        <td>placeholder</td>
-        <td>irrelevant</td>
-        <td>visual</td>
-        <td>layout</td>
-      </tr>
-      <tr>
-        <td>1,003</td>
-        <td>data</td>
-        <td>rich</td>
-        <td>dashboard</td>
-        <td>tabular</td>
-      </tr>
-      <tr>
-        <td>1,003</td>
-        <td>information</td>
-        <td>placeholder</td>
-        <td>illustrative</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,004</td>
-        <td>text</td>
-        <td>random</td>
-        <td>layout</td>
-        <td>dashboard</td>
-      </tr>
-      <tr>
-        <td>1,005</td>
-        <td>dashboard</td>
-        <td>irrelevant</td>
-        <td>text</td>
-        <td>placeholder</td>
-      </tr>
-      <tr>
-        <td>1,006</td>
-        <td>dashboard</td>
-        <td>illustrative</td>
-        <td>rich</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,007</td>
-        <td>placeholder</td>
-        <td>tabular</td>
-        <td>information</td>
-        <td>irrelevant</td>
-      </tr>
-      <tr>
-        <td>1,008</td>
-        <td>random</td>
-        <td>data</td>
-        <td>placeholder</td>
-        <td>text</td>
-      </tr>
-      <tr>
-        <td>1,009</td>
-        <td>placeholder</td>
-        <td>irrelevant</td>
-        <td>visual</td>
-        <td>layout</td>
-      </tr>
-      <tr>
-        <td>1,010</td>
-        <td>data</td>
-        <td>rich</td>
-        <td>dashboard</td>
-        <td>tabular</td>
-      </tr>
-      <tr>
-        <td>1,011</td>
-        <td>information</td>
-        <td>placeholder</td>
-        <td>illustrative</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,012</td>
-        <td>text</td>
-        <td>placeholder</td>
-        <td>layout</td>
-        <td>dashboard</td>
-      </tr>
-      <tr>
-        <td>1,013</td>
-        <td>dashboard</td>
-        <td>irrelevant</td>
-        <td>text</td>
-        <td>visual</td>
-      </tr>
-      <tr>
-        <td>1,014</td>
-        <td>dashboard</td>
-        <td>illustrative</td>
-        <td>rich</td>
-        <td>data</td>
-      </tr>
-      <tr>
-        <td>1,015</td>
-        <td>random</td>
-        <td>tabular</td>
-        <td>information</td>
-        <td>text</td>
-      </tr>
+     <?php endforeach;?>
     </tbody>
   </table>
 </div>
+<?php endif;?>
 <script src="<?= base_url('assets/Chart.js-4.3.2/chart.js') ?>"></script>
-<script src="<?= base_url('assets/js/dashboard.js') ?>"></script>
+<?php if ($grafik1 !== []): ?>
+  <script>
+    /* globals Chart:false */
+
+    (() => {
+      'use strict'
+
+      // Graphs
+      const ctx = document.getElementById('Grafik1')
+      // eslint-disable-next-line no-unused-vars
+      const myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: [
+            <?php foreach ($grafik1 as $grafik1_item): ?> '<?= esc($grafik1_item['kecamatan']) ?>',
+            <?php endforeach ?>
+          ],
+          datasets: [{
+            data: [
+              <?php foreach ($grafik1 as $grafik1_item): ?> '<?= esc($grafik1_item['jumlah']) ?>',
+              <?php endforeach ?>
+            ],
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false,
+              position: "right",
+              align: "top"
+            },
+            tooltip: {
+              boxPadding: 3
+            }
+          }
+        }
+      })
+    })()
+  </script>
+
+<?php endif; ?>

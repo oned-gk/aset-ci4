@@ -9,7 +9,7 @@ use App\Controllers\Kelurahan;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', [Depan::class,'view']);
+$routes->get('/', [Depan::class,'dashboard']);
 $routes->get('tiang',[Tiang::class,'index']);
 $routes->get('tiang/peta',[Tiang::class,'peta']);
 $routes->get('tiang/new',[Tiang::class,'new']);
