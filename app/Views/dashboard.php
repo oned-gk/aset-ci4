@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<!-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">Dashboard</h1>
   <div class="btn-toolbar mb-2 mb-md-0">
     <div class="btn-group me-2">
@@ -12,59 +12,46 @@
       This week
     </button>
   </div>
-</div>
+</div> -->
 <?php if ($grafik1 !== []): ?>
-  <div class="row">
-    <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <canvas id="Grafik1" width="900" height="200"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="col-8">
-      <?php $urut = 1  ?>
-      <?php foreach ($grafik1 as $grafik1_item): ?>
-
-        <?= $urut++; ?>
-        <?= esc($grafik1_item['kecamatan']) ?> :
-        <?= esc($grafik1_item['jumlah']) ?><br>
-
-        </tr>
-      <?php endforeach ?>
-    </div>
+  <div class="row mb-2">
+    <div class="col-3"></div>
+    <div class="col-6">
+          <canvas id="Grafik1" width="400" height="200"></canvas>
+    </div>   
+    <div class="col-3"></div>   
   </div>
 <?php endif; ?>
 <?php if ($grafik1 !== []): ?>
-<h2>Jumlah Tiang per Kelurahan</h2>
-<div class="table-responsive small">
-  <table class="table table-striped table-sm">
-    <thead>
-      <tr>
-        <th scope="col">No</th>
-        <th scope="col">Kelurahan</th>
-        <th scope="col">jumlah</th>
-        <th scope="col">Kecamatan</th>
-        <th scope="col">Kabupaten</th>       
-      </tr>
-    </thead>
-    <tbody>
-    <?php $urut = 1  ?>
-    <?php foreach ($grid1 as $grid1_item): ?>
-      
-      
-      <tr>
-        <td><?= $urut++; ?></td>
-        <td><?= esc($grid1_item['kelurahan']) ?></td>
-        <td><?= esc($grid1_item['jumlah']) ?></td>
-        <td><?= esc($grid1_item['kecamatan']) ?></td>
-        <td><?= esc($grid1_item['kabupaten']) ?></td>
-      </tr>
-     <?php endforeach;?>
-    </tbody>
-  </table>
-</div>
-<?php endif;?>
+  <h6>Jumlah Tiang per Kelurahan</h6>
+  <div class="table-responsive small">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Kelurahan</th>
+          <th scope="col">jumlah</th>
+          <th scope="col">Kecamatan</th>
+          <th scope="col">Kabupaten</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $urut = 1  ?>
+        <?php foreach ($grid1 as $grid1_item): ?>
+
+
+          <tr>
+            <td><?= $urut++; ?></td>
+            <td><?= esc($grid1_item['kelurahan']) ?></td>
+            <td><?= esc($grid1_item['jumlah']) ?></td>
+            <td><?= esc($grid1_item['kecamatan']) ?></td>
+            <td><?= esc($grid1_item['kabupaten']) ?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+<?php endif; ?>
 <script src="<?= base_url('assets/Chart.js-4.3.2/chart.js') ?>"></script>
 <?php if ($grafik1 !== []): ?>
   <script>
@@ -80,7 +67,8 @@
         type: 'pie',
         data: {
           labels: [
-            <?php foreach ($grafik1 as $grafik1_item): ?> '<?= esc($grafik1_item['kecamatan']) ?>',
+            <?php foreach ($grafik1 as $grafik1_item): ?> 
+              '<?= esc($grafik1_item['kecamatan']).' ('.esc($grafik1_item['jumlah']).')' ?>',
             <?php endforeach ?>
           ],
           datasets: [{
@@ -93,9 +81,8 @@
         options: {
           plugins: {
             legend: {
-              display: false,
-              position: "right",
-              align: "top"
+              display: true,
+              position: "bottom",             
             },
             tooltip: {
               boxPadding: 3
