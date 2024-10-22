@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Model;
 use App\Models\JawaModel;
-
+use App\Models\TiangModel;
 
 class Kelurahan extends BaseController
 {
@@ -38,7 +38,8 @@ class Kelurahan extends BaseController
             foreach ($kelurahanlist as $kelurahan) {
                 $data[] = array(
                     "value" => $kelurahan['id'],
-                    "label" => $kelurahan['kelurahan'] . ', ' .$kelurahan['kecamatan'].', '.$kelurahan['kabupaten_kota'] ,', '.$kelurahan['provinsi'],
+                    "label" => $kelurahan['kelurahan'] . ', ' . $kelurahan['kecamatan'] . ', ' . $kelurahan['kabupaten_kota'],
+                    ', ' . $kelurahan['provinsi'],
                     "kelurahan" => $kelurahan['kelurahan'],
                     "kecamatan" => $kelurahan['kecamatan'],
                     "kabupaten" => $kelurahan['kabupaten_kota'],
@@ -51,30 +52,20 @@ class Kelurahan extends BaseController
         return $this->response->setJSON($response);
     }
 
-    // public function getkecamatan(int $id)
-    // {
-    //     $model = model(KecamatanModel::class);
-    //     $kecamatanlist = $model->select('id,kecamatan,kabkot_id')
-    //         ->where('id', $id)->find();
-    //     $kecamatan = $kecamatanlist[0]['kecamatan'];
-    //     $idkabkot = $kecamatanlist[0]['kabkot_id'];
-    //     $kabkot = $this->getkabkot($idkabkot);
-    //     return $kecamatan . ', ' . $kabkot;
-
-    // }
-    // public function getkabkot(int $id)
-    // {
-    //     $model = model(KabKotModel::class);
-    //     $kabkotlist = $model->select('id,kabupaten_kota')
-    //         ->where('id', $id)->find();
-    //     $kabkot =    $kabkotlist[0]['kabupaten_kota'];
-    //     return $kabkot;
-    // }
-    // public function getprovisi(int $id)
-    // {
-    //     $model = model(ProvinsiModel::class);
-    //     $kecamatanlist = $model->select('id,kecamatan')
-    //         ->where('id', $id)->find();
-    //     return $kecamatanlist[0]['kecamatan'];
-    // }
+    public function getjalan()
+    {
+        $request = service('request');
+        $postData = $request->getPost();
+        $model = model(TiangModel::class);
+        $cari = 'budi';
+        $datajalan = $model->select('jalan')->groupBy('jalan')->where(' length(jalan)>3')->like('jalan', $cari)->findAll();
+        foreach ($datajalan as $kelurahan) {
+            $data[] = array(
+                "jalan" => $kelurahan['jalan'],
+                "label" => $kelurahan['jalan']
+            );
+        }
+        $response['data'] = $data;
+        return $this->response->setJSON($response);
+    }
 }

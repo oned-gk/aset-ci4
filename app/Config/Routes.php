@@ -23,5 +23,6 @@ $routes->get('wilayah',[Wilayah::class,'index']);
 $routes->post('wilayah/kabkot',[Wilayah::class,'kabkot']);
 $routes->get('kelurahan',[Kelurahan::class,'index']);
 $routes->post('kelurahan/getkelurahan',[Kelurahan::class,'getkelurahan']);
+$routes->post('kelurahan/getjalan',[Kelurahan::class,'getjalan']);
 // $routes->get('/', 'WilayahController::index');
 // $routes->post('wilayah/getKabKot', 'WilayahController::getKabKot');

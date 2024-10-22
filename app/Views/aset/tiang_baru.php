@@ -1,16 +1,16 @@
 <?= session()->getFlashdata('error') ?>
 <?= validation_list_errors('list_toasts') ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2 class="h2"><?= esc($title) ?></h2>
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group me-2">
-                    <a href="#" onclick="history.go(-1)" class="btn btn-sm btn-outline-secondary">Kembali</a>
-                    <a href="<?=base_url('tiang')?>" class="btn btn-sm btn-outline-secondary">Data Tiang</a>
-                </div>
-            </div>
+    <h2 class="h2"><?= esc($title) ?></h2>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a href="#" onclick="history.go(-1)" class="btn btn-sm btn-outline-secondary">Kembali</a>
+            <a href="<?= base_url('tiang') ?>" class="btn btn-sm btn-outline-secondary">Data Tiang</a>
         </div>
+    </div>
+</div>
 <div class="card shadow shadow-lg bg-light">
-<div class="card-body">
+    <div class="card-body">
         <form action="/tiang/insert" method="post" enctype="multipart/form-data" class="row gx-3 gy-1">
             <?= csrf_field() ?>
             <input type="hidden" class="txt_csrfname" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
@@ -68,7 +68,7 @@
                     url: "<?= base_url('kelurahan/getkelurahan') ?>",
                     type: 'post',
                     dataType: "json",
-                    data: {
+                    data: {                        
                         search: request.term,
                         [csrfName]: csrfHash // CSRF Token
                     },
@@ -96,6 +96,40 @@
                 $('#kabupaten').val(ui.item.kabupaten); // save selected id to input
                 $('#provinsi').val(ui.item.provinsi); // save selected id to input
 
+                return false;
+            },
+
+        });
+
+        $("#jalan").autocomplete({
+            maxShowItems: 10,
+            source: function(request, response) {
+                // CSRF Hash
+                var csrfName = $('.txt_csrfname').attr('name'); // CSRF Token name
+                var csrfHash = $('.txt_csrfname').val(); // CSRF hash
+                // Fetch data
+                $.ajax({
+                    url: "<?= base_url('kelurahan/getjalan') ?>",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        cari: request.term,
+                        [csrfName]: csrfHash // CSRF Token
+                    },
+                    success: function(data) {
+                        // Update CSRF Token
+                        $('.txt_csrfname').val(data.token);
+                        response(data.data);
+                    }
+                });
+            },
+            select: function(event, ui) {
+                // Set selection
+                $('#jalan').val(ui.item.jalan); // display the selected text
+                return false;
+            },
+            focus: function(event, ui) {
+                $("#jalan").val(ui.item.jalan);
                 return false;
             },
 
